@@ -1,31 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="layout/header.jsp"%>
-<div class="card text-left">
-	<div class="card-header"></div>
-	<div class="card-body">
-		<h5 class="card-title">Card title</h5>
-		<p class="card-text">Some quick example text to build on the card
-			title and make up the bulk of the card's content.</p>
-		<a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+	<div class="card text-left">
+		<div class="card-header"></div>
+		<c:forEach var="board" items="${boards.content}">
+			<div class="card-body">
+				<h5 class="card-title">${board.title}</h5>
+				<a href="/board/${board.id }" class="btn btn-primary">상세보기</a>
+			</div>
+			<div class="card-footer text-muted"></div>
+		</c:forEach>
+		<br />
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+			<c:choose>
+				<c:when test="${boards.first}">
+				<li class="page-item disabled"><a class="page-link" href="?page=${boards.number-1 }"><<</a></li>
+				</c:when>
+				<c:otherwise>
+				<li class="page-item"><a class="page-link" href="?page=${boards.number-1 }"><<</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${boards.last}">
+				<li class="page-item disabled" ><a class="page-link" href="?page=${boards.number+1 }">>></a></li>
+				</c:when>
+				<c:otherwise>
+				<li class="page-item"><a class="page-link" href="?page=${boards.number+1 }">>></a></li>
+				</c:otherwise>
+			</c:choose>
+			</ul>
+		</nav>
 	</div>
-	<div class="card-footer text-muted"></div>
-	<div class="card-header"></div>
-	<div class="card-body">
-		<h5 class="card-title">Card title</h5>
-		<p class="card-text">Some quick example text to build on the card
-			title and make up the bulk of the card's content.</p>
-		<a href="#" class="btn btn-primary">Go somewhere</a>
-	</div>
-	<div class="card-footer text-muted"></div>
-	<div class="card-header"></div>
-	<div class="card-body">
-		<h5 class="card-title">Card title</h5>
-		<p class="card-text">Some quick example text to build on the card
-			title and make up the bulk of the card's content.</p>
-		<a href="#" class="btn btn-primary">상세</a>
-	</div>
-	<div class="card-footer text-muted"></div>
 </div>
 
 <%@ include file="layout/footer.jsp"%>

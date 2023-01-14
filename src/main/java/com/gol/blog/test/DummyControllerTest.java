@@ -67,7 +67,8 @@ public class DummyControllerTest {
 	
 	//http://localhost:8000/blog/dummy/user?page=0
 	@GetMapping("/dummy/user")
-	public List<User> pageList(@PageableDefault(size=2, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+	public List<User> pageList(
+			@PageableDefault(size = 2, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 		List<User> users = userRepository.findAll(pageable).getContent();
 		return users;
 	}

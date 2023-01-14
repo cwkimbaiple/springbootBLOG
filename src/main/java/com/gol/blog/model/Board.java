@@ -37,8 +37,7 @@ public class Board {
 	@Lob
 	private String content;
 	
-	@ColumnDefault("0")
-	private String count; // 조회수
+	private int count; // 조회수
 	
 	@ManyToOne(fetch=FetchType.EAGER) // Many는 Board, One은 User
 	@JoinColumn(name="userId")

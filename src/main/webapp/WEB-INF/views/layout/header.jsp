@@ -29,10 +29,14 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <title>CWKIM BLOG</title>
 </head>
 <body>
-<h1>${principal}</h1>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="/">홈</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -44,17 +48,18 @@
 			<c:choose>
 				<c:when test="${empty principal}">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/auth/loginForm">로그인
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="/auth/joinForm">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/auth/loginForm">로그인 </a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/auth/joinForm">회원가입</a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link"
-							href="/board/form">글쓰기</a></li>
+							href="/board/saveForm">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/user/form">회원정보</a></li>
+							href="/user/updateForm">회원정보</a></li>
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 					</ul>
 				</c:otherwise>
