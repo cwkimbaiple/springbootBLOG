@@ -51,7 +51,7 @@ let index = {
 		}).done(function(resp) {
 			console.log(resp.status);
 			if (resp.status === 200) {
-				alert("회원수정이 완료 되었습니다.");
+				alert("회원수정이 완료 되었습니다....");
 				location.href = "/";
 			} else {
 				alert("회원수정에 실패하였습니다.");
