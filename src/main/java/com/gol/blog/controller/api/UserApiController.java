@@ -2,6 +2,10 @@ package com.gol.blog.controller.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +24,9 @@ public class UserApiController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
 //	@Autowired 기본으로 선언해서 사용 가능
 //	private HttpSession session;
 
@@ -32,10 +39,13 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	@PutMapping("/user")
-	public ResponseDto<Integer> update(@RequestBody User user) {
+	public ResponseDto<Integer> update(@RequestBody User user, HttpSession session) {
 		System.out.println("회원수정 호출됨");
 		userService.회원수정(user);
 		System.out.println("회원수정 호출됨2");
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
