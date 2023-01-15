@@ -28,4 +28,15 @@ public class UserService {
 //	public User 로그인(User user) {
 //		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 //	}
+	@Transactional
+	public void 회원수정(User user) {
+		
+		User updatedUser =userRepository.findById(user.getId())
+		.orElseThrow(() -> {
+			return new IllegalArgumentException("회원찾기 실패: 아이디를 찾을수 없습니다.");
+		});
+		
+		updatedUser.setPassword(encoder.encode(user.getPassword()));
+		updatedUser.setEmail(user.getEmail());
+	}
 }
